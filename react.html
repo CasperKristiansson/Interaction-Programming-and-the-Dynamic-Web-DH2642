@@ -1,0 +1,33 @@
+<html>
+<head>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="js/views/summaryView.js" type="text/jsx"></script>
+<script src="js/views/sidebarView.js" type="text/jsx"></script>
+<script src="js/views/searchView.js" type="text/jsx"></script>
+<script src="js/App.js" type="text/jsx"></script>
+</head>
+<body>
+<div id="app"></div>
+</body>
+
+<!-- <script type="text/jsx">
+const persons=4;
+ReactDOM.render(
+   <div>
+       Summary for <span title="nr. guests">{persons}</span> guests:
+   </div>
+,  document.getElementById("app")
+);
+</script> -->
+
+<!-- ReactDOM.render(<SummaryView persons={5} />, document.getElementById("app")); -->
+
+<script type="text/jsx">
+    ReactDOM.render(<SummaryView persons={5} />, document.getElementById("app"));
+    ReactDOM.render(<SidebarView guests={4} /> , document.getElementById("app"));
+    ReactDOM.render(<SearchFormView options={["starter", "main course", "dessert"]} />, document.getElementById("app"));
+</script>
+
+</html>
