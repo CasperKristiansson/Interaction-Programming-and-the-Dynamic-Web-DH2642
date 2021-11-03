@@ -25,19 +25,43 @@ ReactDOM.render(
 <!-- ReactDOM.render(<SummaryView persons={5} />, document.getElementById("app")); -->
 
     <script type="text/jsx">
+        /*
         ReactDOM.render(<SummaryView persons={5} />, document.getElementById("app"));
+
         ReactDOM.render(<SidebarView guests={4} /> , document.getElementById("app"));
 
         ReactDOM.render(<SearchFormView  options={["starter", "main course", "dessert"]} />, document.getElementById("app"));
 
-        ReactDOM.render(<SearchFormView  options={["starter", "main course", "dessert"]}    
-                        onSearch = {() => console.log("User wants to search!")}             
-                        onText = {txt => console.log("User typed: ", txt)}	
+        ReactDOM.render(<SearchFormView  options={["starter", "main course", "dessert"]}
+                        onSearch = {() => console.log("User wants to search!")}
+                        onText = {txt => console.log("User typed: ", txt)}
                         onDishType = {dishType => console.log("User chose dish type: ", dishType)}/>,
                         document.getElementById("app"));
-        
+
         ReactDOM.render(<SidebarView guests = {3}
                         setGuests = {guestsAmount => console.log("The user wants a dinner for " + guestsAmount + " guests.")}/>,
                         document.getElementById("app"));
+        
+
+        ReactDOM.render(<ReactSidebarLocalState />, document.getElementById("app"));
+        */
+
+        function RenderTest() {
+            console.log("React sub-component render test");
+            return false;
+        }
+        function ReactTopLevelNumber() {
+            const [num, setNumber] = React.useState(2);
+            return (
+                <div>
+                    <SidebarView guests = {num}
+                                setGuests={ x => setNumber(x)} />
+
+                    <SummaryView persons = {num} />
+                    <RenderTest />
+                </div>
+            );
+        }
+        ReactDOM.render(<ReactTopLevelNumber />, document.getElementById("app"));
     </script>
 </html>

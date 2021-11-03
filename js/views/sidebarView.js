@@ -16,3 +16,9 @@ const VueSidebarLocalState= {
                 />;
     }
 };
+
+function ReactSidebarLocalState() {
+    const [num, setNumber] = React.useState(2);
+    return <SidebarView guests = {num}
+                        setGuests = { x => setNumber(x) } />;
+}
