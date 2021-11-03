@@ -1,7 +1,10 @@
 function SearchFormView(props) {
     return (
         <div>
-            <select>
+            <input onChange = { event => props.onText(event.target.value) } />
+            <button onClick = { event => props.onSearch() }>Search</button>
+
+            <select onChange = { event => props.onDishType(event.target.value) }>
                 <option>Choose:</option>
                 {props.options.map(function(opt) { return <option>{opt}</option> })}
             </select>

@@ -1,5 +1,5 @@
 class DinnerModel{
-    constructor(guests =2){
+    constructor(guests = 2){
         this.setNumberOfGuests(guests);}
 
     setNumberOfGuests(x) {
