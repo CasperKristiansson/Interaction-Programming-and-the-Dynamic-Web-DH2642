@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script>const React={createElement:Vue.h};</script>
+
+        <script src="js/views/summaryView.js" type="text/jsx"></script>
+        <script src="js/views/sidebarView.js" type="text/jsx"></script>
+        <script src="js/views/searchView.js" type="text/jsx"></script>
+        <script src="js/App.js" type="text/jsx"></script>
+
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+
+        <script type="text/jsx">
+            Vue.render(<SummaryView persons={5} />, document.getElementById("app"));
+            Vue.render(<SidebarView guests={4} /> , document.getElementById("app"));
+
+            Vue.render(<SearchFormView  options={["starter", "main course", "dessert"]} />,
+                        document.getElementById("app"));
+
+            Vue.render(<SearchFormView  options={["starter", "main course", "dessert"]}    
+                        onSearch = {() => console.log("User wants to search!")}             
+                        onText = {txt => console.log("User typed: ", txt)}	
+                        onDishType = {dishType => console.log("User chose dish type: ", dishType)}/>,
+                        document.getElementById("app"));
+            
+            Vue.render(<SidebarView guests = {3}
+                        setGuests = {guestsAmount => console.log("The user wants a dinner for " + guestsAmount + " guests.")}/>,
+                        document.getElementById("app"));
+
+        </script>
+
+</html>
