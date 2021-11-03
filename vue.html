@@ -7,30 +7,47 @@
         <script src="js/views/summaryView.js" type="text/jsx"></script>
         <script src="js/views/sidebarView.js" type="text/jsx"></script>
         <script src="js/views/searchView.js" type="text/jsx"></script>
+        <script src="js/DinnerModel.js" type="text/jsx"></script>
+        
         <script src="js/App.js" type="text/jsx"></script>
+        <script src="vuejs/sidebarPresenter.js" type="text/jsx"></script>
+        <script src="vuejs/summaryPresenter.js" type="text/jsx"></script>
 
     </head>
     <body>
         <div id="app"></div>
     </body>
 
-        <script type="text/jsx">
-            Vue.render(<SummaryView persons={5} />, document.getElementById("app"));
-            Vue.render(<SidebarView guests={4} /> , document.getElementById("app"));
+    <script type="text/jsx">
+        Vue.render(<SummaryView persons={5} />, document.getElementById("app"));
+        Vue.render(<SidebarView guests={4} /> , document.getElementById("app"));
 
-            Vue.render(<SearchFormView  options={["starter", "main course", "dessert"]} />,
-                        document.getElementById("app"));
+        Vue.render(<SearchFormView  options={["starter", "main course", "dessert"]} />,
+                    document.getElementById("app"));
 
-            Vue.render(<SearchFormView  options={["starter", "main course", "dessert"]}    
-                        onSearch = {() => console.log("User wants to search!")}             
-                        onText = {txt => console.log("User typed: ", txt)}	
-                        onDishType = {dishType => console.log("User chose dish type: ", dishType)}/>,
-                        document.getElementById("app"));
-            
-            Vue.render(<SidebarView guests = {3}
-                        setGuests = {guestsAmount => console.log("The user wants a dinner for " + guestsAmount + " guests.")}/>,
-                        document.getElementById("app"));
+        Vue.render(<SearchFormView  options={["starter", "main course", "dessert"]}    
+                    onSearch = {() => console.log("User wants to search!")}             
+                    onText = {txt => console.log("User typed: ", txt)}	
+                    onDishType = {dishType => console.log("User chose dish type: ", dishType)}/>,
+                    document.getElementById("app"));
+        
+        Vue.render(<SidebarView guests = {3}
+                    setGuests = {guestsAmount => console.log("The user wants a dinner for " + guestsAmount + " guests.")}/>,
+                    document.getElementById("app"));
 
-        </script>
-
+        Vue.render(<VueSidebarLocalState />, document.getElementById("app"));
+        
+        const myModel = new DinnerModel();
+        Vue.render(<App model = {myModel} />, document.getElementById("app"));
+        
+        const TopLevelModel= {
+            data() {
+                return { model : new DinnerModel() };},
+                
+            render() {
+                return <App model = { this.model }
+                            setGuests = { guests => this.model.setNumberOfGuests(guests) }/>; }
+        };
+        Vue.render(<TopLevelModel />, document.getElementById("app"));
+    </script>
 </html>
