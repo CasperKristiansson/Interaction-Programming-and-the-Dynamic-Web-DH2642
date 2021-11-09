@@ -3,9 +3,17 @@
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
         <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <link rel="stylesheet" href="style.css">
 
         <script src="js/apiConfig.js"></script>
         <script src="js/dishSource.js"></script>
+        <script src="js/views/summaryView.js" type="text/jsx"></script>
+        <script src="js/views/sidebarView.js" type="text/jsx"></script>
+        <script src="js/views/searchView.js" type="text/jsx"></script>
+        <script src="js/views/detailsView.js" type="text/jsx"></script>
+        <script src="js/DinnerModel.js" type="text/jsx"></script>
     </head>
 
     <body>
@@ -13,6 +21,51 @@
     </body>
 
     <script type="text/jsx">
+        /*
         DishSource.getDishDetails(547775).then(console.log).catch(console.error)
+
+        DishSource.apiCall("/recipes/quickAnswer?"+new URLSearchParams({q:"How much vitamin C is in an orange?"}))
+                            .then(data=> console.log(data)).catch(error=> console.log("there was a problem", error))
+        
+        DishSource.searchDishes({query:"pizza"}).then(results => console.log(results));
+
+        Promise.all([DishSource.getDishDetails(AA), DishSource.getDishDetails(BB)])
+                    .then(values => ReactDOM.render(<TestedView someProp = {values}))
+
+        DishSource.searchDishes({query:"pizza"}).then(results =>
+                    ReactDOM.render(<SearchResultsView searchResults = {results} />,
+                    document.getElementById("app")));
+        
+        DishSource.searchDishes({query:"pasta"}).then(results =>
+                    ReactDOM.render(<SearchResultsView searchResults = {results}
+                    dishChosen = {id => console.log("The user chose dish ", id)}/>,
+                    document.getElementById("app")));
+        
+        Promise.all([DishSource.getDishDetails(523145), DishSource.getDishDetails(787321 ),
+            	    DishSource.getDishDetails(452179)]).then(values =>
+                    ReactDOM.render(<SidebarView guests = {5}
+                    dishes = {values}
+                    removeDish = {id => console.log("user wants to remove dish with ID ", id)}/>,
+                    document.getElementById("app")));
+        
+        Promise.all([DishSource.getDishDetails(523145), DishSource.getDishDetails(787321 ),
+            	    DishSource.getDishDetails(452179)]).then(values =>
+                    ReactDOM.render(<SidebarView guests={5}
+                    dishes = {values}
+                    removeDish = {id => console.log("user wants to remove dish with ID ", id)}
+                    dishChoice = {id => console.log("user wants details of dish with ID ", id)} />,
+                    document.getElementById("app")));
+        
+        DishSource.getDishDetails(547775).then(details=>
+                    ReactDOM.render(<DetailsView dish={details} people={5} isDishInMenu={false}
+                    dishAdded = {() => console.log("User wants to add this dish! ")}/>,
+                    document.getElementById("app")));
+        */
+
+        Promise.all([DishSource.getDishDetails(523145), DishSource.getDishDetails(787321),
+                    DishSource.getDishDetails(452179)]).then(values => ReactDOM.render(
+                    <SummaryView persons={5}
+                    ingredients = {getIngredients(values)} />,
+                    document.getElementById("app")));       
     </script>
 </html>

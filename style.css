@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,500;1,800&family=Playfair+Display:wght@600&family=Work+Sans:wght@400;600&display=swap');
+
+p, li, h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Playfair Display', serif;
+    font-family: 'Work Sans', sans-serif;
+}
+
+
+.details-food-intro {
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.details-food-intro img {
+    float: left;
+    margin-right: 20px;
+    height:100%;
+    max-height: 300px;
+    filter: drop-shadow(0 0 0.2rem);
+}
+
+.details-food-intro-text {
+    margin-top: -30px;
+}
+
+.details-food-intro-text button {
+    cursor: pointer;
+    background-color: white;
+    border: 2px solid #006a94;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 15px;
+    color: #006a94;
+}
+
+.details-food-intro-text button:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.total-price {
+    margin-top: 50px;
+    font-size: 18px;
+    color: #006a94;
+}
+
+.details-food-intro-text button:hover {
+    color: white;
+    background-color: #006a94;
+}
+
+.details-food-intro li {
+    color: #373b3d;
+}
+
+
+.dish-type {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.dish-price {
+    font-size: 24px;
+    color: #006a94;
+}
+
+.details-food-information {
+    padding: 0 29% 0 29%;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px 12px;
+    border-top: 1px solid #373b3d;
+    color: #373b3d;
+}
+
+#Description {
+    display: block;
+}
+
+.tab-button {
+    cursor: pointer;
+    background-color: white;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    color: black;
+}
+
+.tab-button.active {
+    color: white;
+    background-color: #006a94;
+    border-radius: 6px 6px 0 0;
+}
+
+.active, .tab-button:hover {
+    color: white;
+    background-color: #006a94;
+    border-radius: 6px 6px 0 0;
+}
+
+@media only screen and (max-width: 1400px) {
+    .details-food-information {
+        padding: 0 10% 0 10%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .details-food-intro img {
+        float: none;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .details-food-intro {
+        display: block;
+        padding: 20px;
+    }
+
+    .details-food-intro-text {
+        padding: 50px 10% 10% 17%;
+    }
+
+    .details-food-intro-text button {
+        margin-top: 30px;
+    }
+}
+
+@media only screen and (max-width: 570px) {
+    .details-food-intro-text {
+        padding: 50px 5% 10% 5%;
+    }
+
+    .details-food-intro img {
+        width: 100%;
+        height: auto;
+    }
+}
