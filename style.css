@@ -205,3 +205,18 @@ td, body{
         height: auto;
     }
 }
+
+@media only screen and (max-width: 900px) {
+    .flexParent {
+        flex-direction: column;
+    }
+    .debug {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sidebar {
+        width: 100%;
+    }
+}
