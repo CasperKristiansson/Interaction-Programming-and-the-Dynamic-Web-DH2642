@@ -1,12 +1,77 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,500;1,800&family=Playfair+Display:wght@600&family=Work+Sans:wght@400;600&display=swap');
 
-p, li, h1 {
+body {
     font-family: 'Open Sans', sans-serif;
     font-family: 'Playfair Display', serif;
     font-family: 'Work Sans', sans-serif;
 }
 
+td, body{
+    font-size: 13px;
+}
 
+/* Navigation */
+.debug {
+    border: 2px solid #ddd;
+
+}
+
+.flexParent {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 25%;
+}
+
+.mainContent {
+    margin-left: -1px;
+}
+
+/* sidebarView */
+.sidebarView {
+    padding: 5px;
+}
+
+.mealNote {
+    margin-top: 20px;
+}
+
+.dishPrice {
+    color: #006a94;
+}
+
+.sidebarView button {
+    margin-left: 5px;
+}
+
+/* summaryView */
+.summaryView {
+    padding: 10px;
+    font-size: 17px;
+}
+
+.ingredientsTable {
+    margin-top: 20px;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.ingredientsTable th {
+    font-size: 14px;
+    text-align: left;
+    padding: 10px 10px 10px 10px;
+    background-color: #006a94;
+    color: white;
+}
+
+.ingredientsTable tr:hover {
+    background-color: #46add6;
+    color: white;
+}
+
+/* Food Details */
 .details-food-intro {
     padding: 50px;
     display: flex;

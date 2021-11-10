@@ -1,8 +1,8 @@
 function SummaryView(props){
     return (
-        <div>
+        <div class="summaryView">
             Summary for <span title="nr. guests"> { props.persons }</span> guests:
-            <table>
+            <table class ="ingredientsTable">
                 <thead>
                     <tr>
                         <th>Ingredients</th>

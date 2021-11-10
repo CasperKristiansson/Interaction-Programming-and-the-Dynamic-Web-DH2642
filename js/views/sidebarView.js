@@ -1,11 +1,11 @@
 function SidebarView(props) {
     return (console.log(props.dishes),
-        <div>
+        <div class="sidebarView">
             <button disabled = { props.guests <= 1 } onClick = { () => props.setGuests(props.guests - 1)}> - </button>
             <span title = "guests"> { props.guests }</span>
             <button onClick = { () => props.setGuests(props.guests + 1)}> + </button>
 
-            <table id="Dishes">
+            <table class="mealNote">
                 <tbody>
                     {props.dishes.sort(compareDishes).map(dish => {
                         return (
@@ -17,18 +17,18 @@ function SidebarView(props) {
                                 </td>
 
                                 <td>{dishType(dish)}</td>
-                                <td class="table-right">{(dish.pricePerServing * props.guests).toFixed(2)}</td>
+                                <td class="dishPrice">{`$${(dish.pricePerServing * props.guests).toFixed(2)}`}</td>
                             </tr>
                         );
                     })}
                     
-                    <tr id="Total">
+                    <tr class="total">
                         <td></td>
                         <td>Total</td>
                         <td></td>
-                        <td class="table-right">
-                            {(props.dishes.reduce((accumulator, value) =>
-                            accumulator + value.pricePerServing * props.guests, 0)).toFixed(2)}
+                        <td class="dishPrice">
+                            {`$${(props.dishes.reduce((accumulator, value) =>
+                            accumulator + value.pricePerServing * props.guests, 0)).toFixed(2)}`}
                         </td>
                     </tr>
                 </tbody>
