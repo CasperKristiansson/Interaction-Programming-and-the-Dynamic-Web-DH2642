@@ -1,11 +1,22 @@
 <html>
     <head>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
         <script>const React={createElement:Vue.h};</script>
 
-		<script src="js/apiConfig.js"></script>
-  		<script src="js/dishSource.js"></script>
+        <script src="js/apiConfig.js" type="text/jsx"></script>
+        <script src="js/dishSource.js" type="text/jsx"></script>
+        <script src="js/views/summaryView.js" type="text/jsx"></script>
+        <script src="js/views/sidebarView.js" type="text/jsx"></script>
+        <script src="js/views/searchView.js" type="text/jsx"></script>
+        <script src="js/views/detailsView.js" type="text/jsx"></script>
+        <script src="js/DinnerModel.js" type="text/jsx"></script>
+        <script src="js/App.js" type="text/jsx"></script>
+        <script src="vuejs/summaryPresenter.js" type="text/jsx"></script>
+        <script src="vuejs/sidebarPresenter.js" type="text/jsx"></script>
     </head>
 
     <body>
@@ -13,6 +24,22 @@
     </body>
 
     <script type="text/jsx">
-		DishSource.getDishDetails(547775).then(console.log).catch(console.error)
+		const myModel = new DinnerModel(3);
+        const TopLevelModel= {
+            data() {
+                return { model : myModel };
+            },
+
+            render() {
+                return <App model = { this.model }/>;
+            }
+        };
+
+        Promise.all([DishSource.getDishDetails(1445969),DishSource.getDishDetails(1529625),
+                    DishSource.getDishDetails(32104)]).then(function(values){
+                    values.map(d => myModel.addToMenu(d));
+                    Vue.render(<TopLevelModel />, document.getElementById("app"));
+                });
+
     </script>
 </html>

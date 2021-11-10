@@ -1,5 +1,5 @@
 function SidebarView(props) {
-    return (
+    return (console.log(props.dishes),
         <div>
             <button disabled = { props.guests <= 1 } onClick = { () => props.setGuests(props.guests - 1)}> - </button>
             <span title = "guests"> { props.guests }</span>

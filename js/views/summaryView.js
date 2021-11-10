@@ -1,5 +1,5 @@
 function SummaryView(props){
-    return (console.log(props),
+    return (
         <div>
             Summary for <span title="nr. guests"> { props.persons }</span> guests:
             <table>
@@ -15,7 +15,7 @@ function SummaryView(props){
                         return <tr key={ ingredient.name }>
                             <td>{ ingredient.name }</td>
                             <td>{ ingredient.aisle }</td>
-                            <td>{`${(ingredient.amount).toFixed(2)} ${ingredient.unit}`}</td>
+                            <td>{`${(ingredient.amount * props.persons).toFixed(2)} ${ingredient.unit}`}</td>
                         </tr>
                     }) }
                 </tbody>
@@ -24,8 +24,11 @@ function SummaryView(props){
     );
 }
 
-function compareIngredients(a,b){
+function compareIngredients(a, b){
     if(a.aisle < b.aisle) return -1;
     if(a.aisle > b.aisle) return 1;
+
+    if(a.name < b.name) return -1;
+    if(a.name > b.name) return 1;
     if(a.name == b.name) throw new Error("Ingredient names are not unique")
 }

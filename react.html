@@ -1,11 +1,11 @@
 <html>
     <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
         <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-
-        <link rel="stylesheet" href="style.css">
 
         <script src="js/apiConfig.js"></script>
         <script src="js/dishSource.js"></script>
@@ -60,12 +60,25 @@
                     ReactDOM.render(<DetailsView dish={details} people={5} isDishInMenu={false}
                     dishAdded = {() => console.log("User wants to add this dish! ")}/>,
                     document.getElementById("app")));
-        */
 
         Promise.all([DishSource.getDishDetails(523145), DishSource.getDishDetails(787321),
                     DishSource.getDishDetails(452179)]).then(values => ReactDOM.render(
                     <SummaryView persons={5}
                     ingredients = {getIngredients(values)} />,
-                    document.getElementById("app")));       
+                    document.getElementById("app")));     
+         
+        const myModel=new DinnerModel(5);
+        Promise.all([DishSource.getDishDetails(548321), DishSource.getDishDetails(758118),
+                    DishSource.getDishDetails(1152690)]).then(values => values.map(d => myModel.addToMenu(d)))
+                    .then(()=> { myModel.removeFromMenu({id:758118 }); console.log(myModel); })
+        */
+                    
+        Promise.all([DishSource.getDishDetails(523145), DishSource.getDishDetails(787321 ),
+            	    DishSource.getDishDetails(452179)]).then(values =>
+                    ReactDOM.render(<SidebarView guests={5}
+                    dishes = {values}
+                    removeDish = {id => console.log("user wants to remove dish with ID ", id)}
+                    dishChoice = {id => console.log("user wants details of dish with ID ", id)} />,
+                    document.getElementById("app")));
     </script>
 </html>

@@ -1,12 +1,27 @@
 class DinnerModel{
-    constructor(guests = 2){
-        this.setNumberOfGuests(guests);}
+    constructor(guests=2, dishes=[], currentDish=null){
+        this.setNumberOfGuests(guests);
+        this.dishes = dishes;
+        this.currentDish = currentDish;
+    }
 
     setNumberOfGuests(x) {
         if (x <= 0 || x % 1 != 0) {
             throw new Error("Number of guests must be greater than 0 and be a integer");
         }
         this.numberOfGuests = x;
+    }
+
+    addToMenu(dish) {
+        this.dishes = [...this.dishes, dish];
+    }
+
+    removeFromMenu(dishData) {
+        this.dishes = this.dishes.filter(dish => dish.id !== dishData);
+    }
+
+    setCurrentDish(id) {
+        this.currentDish = id;
     }
 }
 
