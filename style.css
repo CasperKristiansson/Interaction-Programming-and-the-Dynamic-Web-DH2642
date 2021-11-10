@@ -7,7 +7,7 @@ body {
 }
 
 td, body{
-    font-size: 13px;
+    font-size: 15px;
 }
 
 /* Navigation */
@@ -46,10 +46,14 @@ td, body{
     margin-left: 5px;
 }
 
+.sidebarView a {
+    color: #006a94;
+}
+
 /* summaryView */
 .summaryView {
     padding: 10px;
-    font-size: 17px;
+    font-size: 20px;
 }
 
 .ingredientsTable {
@@ -59,9 +63,9 @@ td, body{
 }
 
 .ingredientsTable th {
-    font-size: 14px;
+    font-size: 17px;
     text-align: left;
-    padding: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 2px;
     background-color: #006a94;
     color: white;
 }
@@ -73,7 +77,7 @@ td, body{
 
 /* Food Details */
 .details-food-intro {
-    padding: 50px;
+    padding: 50px 20% 50px 20%;
     display: flex;
     justify-content: center;
 }
@@ -87,7 +91,7 @@ td, body{
 }
 
 .details-food-intro-text {
-    margin-top: -30px;
+    margin-top: -25px;
 }
 
 .details-food-intro-text button {
@@ -167,9 +171,31 @@ td, body{
     border-radius: 6px 6px 0 0;
 }
 
+/* searchView */
+
+.searchResultView {
+    display: flex;
+}
+
+.searchResultView img {
+    height:100%;
+    max-height: 100px;
+    
+    width:100%;
+    max-width: 100px;
+}
+
+.searchResultView h3 {
+    font-size: 12px;
+}
+
 @media only screen and (max-width: 1400px) {
     .details-food-information {
         padding: 0 10% 0 10%;
+    }
+
+    .details-food-intro {
+        padding: 50px 10% 50px 10%;
     }
 }
 
@@ -204,9 +230,20 @@ td, body{
         width: 100%;
         height: auto;
     }
+
+    .details-food-intro-text button {
+        margin-top: -15px;
+    }
+
+    .total-price {
+        margin-top: 30px;
+    }
 }
 
 @media only screen and (max-width: 900px) {
+    .details-food-intro {
+        padding: 50px 5% 20px 5%;
+    }
     .flexParent {
         flex-direction: column;
     }

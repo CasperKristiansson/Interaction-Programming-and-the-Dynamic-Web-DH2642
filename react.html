@@ -14,6 +14,7 @@
         <script src="js/views/searchView.js" type="text/jsx"></script>
         <script src="js/views/detailsView.js" type="text/jsx"></script>
         <script src="js/DinnerModel.js" type="text/jsx"></script>
+        <script src="js/views/promiseNoData.js" type="text/jsx"></script>
     </head>
 
     <body>
@@ -71,8 +72,7 @@
         Promise.all([DishSource.getDishDetails(548321), DishSource.getDishDetails(758118),
                     DishSource.getDishDetails(1152690)]).then(values => values.map(d => myModel.addToMenu(d)))
                     .then(()=> { myModel.removeFromMenu({id:758118 }); console.log(myModel); })
-        */
-                    
+        
         Promise.all([DishSource.getDishDetails(523145), DishSource.getDishDetails(787321 ),
             	    DishSource.getDishDetails(452179)]).then(values =>
                     ReactDOM.render(<SidebarView guests={5}
@@ -80,5 +80,11 @@
                     removeDish = {id => console.log("user wants to remove dish with ID ", id)}
                     dishChoice = {id => console.log("user wants details of dish with ID ", id)} />,
                     document.getElementById("app")));
+        
+        ReactDOM.render((promiseNoData("a promise", "some data", null)) || <div>Hello world</div>, document.getElementById("app"));
+        ReactDOM.render(<div><SearchTest /><DetailsTest /></div>, document.getElementById("app"));
+        */
+        
+        ReactDOM.render(<div><SearchTest /><DetailsTest /></div>, document.getElementById("app"));
     </script>
 </html>

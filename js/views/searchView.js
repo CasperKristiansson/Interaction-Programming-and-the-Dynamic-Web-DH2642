@@ -14,10 +14,10 @@ function SearchFormView(props) {
 
 function SearchResultsView(props) {
     return (
-        <div>
+        <div class="searchResultView">
             {props.searchResults.map(function(result) {
                 return (
-                    <span class = {result.id} onClick = {e => props.dishChosen(e.nativeEvent.path[1].className)}>
+                    <span key = {result.id} onClick = {() => props.dishChosen(result.id)}>
                         <img src = {`https://spoonacular.com/recipeImages/${result.image}`}/>
                         <h3>{result.title}</h3>
                     </span>
