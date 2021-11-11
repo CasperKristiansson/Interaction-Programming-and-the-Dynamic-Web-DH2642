@@ -7,7 +7,7 @@ function SidebarView(props) {
 
             <table class="mealNote">
                 <tbody>
-                    {props.dishes.sort(compareDishes).map(dish => {
+                    {[...props.dishes].sort(compareDishes).map(dish => {
                         return (
                             <tr id = {dish.id}>
                                 <td><button onClick = {() => props.removeDish(dish.id)}>x</button></td>

@@ -82,9 +82,11 @@
                     document.getElementById("app")));
         
         ReactDOM.render((promiseNoData("a promise", "some data", null)) || <div>Hello world</div>, document.getElementById("app"));
-        ReactDOM.render(<div><SearchTest /><DetailsTest /></div>, document.getElementById("app"));
+        ReactDOM.render(<div><SearchTest /><DetailsTest /></div>, document.getElementById("app"));  
         */
+
         
-        ReactDOM.render(<div><SearchTest /><DetailsTest /></div>, document.getElementById("app"));
+        
+        ReactDOM.render((promiseNoData("a promise", undefined, null)) || <div>Hello world</div>, document.getElementById("app"));
     </script>
 </html>
