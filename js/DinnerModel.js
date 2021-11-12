@@ -62,6 +62,32 @@ class DinnerModel {
             }
         });
     }
+
+    setCurrentDish(id) {
+        if (this.currentDish === id) return;
+
+        this.currentDish = id;
+        this.currentDishDetails = null;
+        this.currentDishError = null;
+        this.notifyObservers();
+
+        if (this.currentDish) {
+            DishSource.getDishDetails(this.currentDish).then(
+                (dish) => {
+                    if (this.currentDish === id) {
+                        this.currentDishDetails = dish;
+                        this.notifyObservers();
+                    }
+                },
+                (error) => {
+                    if (this.currentDish === id) {
+                        this.currentDishError = error;
+                        this.notifyObservers();
+                    }
+                }
+            );
+        }
+    }
 }
 
 function getIngredients(values) {

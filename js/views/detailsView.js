@@ -11,7 +11,7 @@ function DetailsView(props) {
                     <li>{`Health score: ${props.dish.healthScore}`}</li>
 
                     <p class="total-price">{`Total Price $${(props.dish.pricePerServing * props.people).toFixed(2)}`}</p>
-                    <button onClick = {event => props.dishAdded()} disabled = { props.isDishInMenu }>Add to menu</button> <button>Cancel</button>
+                    <button onClick = {event => props.dishAdded(props.dish)} disabled = { props.isDishInMenu }>Add to menu</button> <button>Cancel</button>
                 </div>
             </div>
 

@@ -9,7 +9,9 @@ function App(props){
 				<SidebarPresenter model = {props.model}/>
 			</div>
 			<div class="mainContent debug">
-				<SummaryPresenter model = {props.model}/>
+				{/* <SummaryPresenter model = {props.model}/> */}
+                <SearchPresenter model={props.model} />
+                <DetailsPresenter model={props.model} />
 			</div>
         </div>  
     );
