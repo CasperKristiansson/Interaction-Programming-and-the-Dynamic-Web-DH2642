@@ -1,92 +1,42 @@
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="stylesheet" href="style.css">
 
-        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="style.css">
 
-        <script src="js/apiConfig.js"></script>
-        <script src="js/dishSource.js"></script>
-        <script src="js/views/summaryView.js" type="text/jsx"></script>
-        <script src="js/views/sidebarView.js" type="text/jsx"></script>
-        <script src="js/views/searchView.js" type="text/jsx"></script>
-        <script src="js/views/detailsView.js" type="text/jsx"></script>
-        <script src="js/DinnerModel.js" type="text/jsx"></script>
-        <script src="js/views/promiseNoData.js" type="text/jsx"></script>
-    </head>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 
-    <body>
-        <div id="app"></div>
-    </body>
+    <script src="js/apiConfig.js"></script>
+    <script src="js/dishSource.js"></script>
+    <script src="js/views/summaryView.js" type="text/jsx"></script>
+    <script src="js/views/sidebarView.js" type="text/jsx"></script>
+    <script src="js/views/searchView.js" type="text/jsx"></script>
+    <script src="js/views/detailsView.js" type="text/jsx"></script>
+    <script src="js/DinnerModel.js" type="text/jsx"></script>
+    <script src="js/views/promiseNoData.js" type="text/jsx"></script>
+    <script src="reactjs/sidebarPresenter.js" type="text/jsx"></script>
+    <script src="reactjs/summaryPresenter.js" type="text/jsx"></script>
 
-    <script type="text/jsx">
-        /*
-        DishSource.getDishDetails(547775).then(console.log).catch(console.error)
+    <script src="js/app.js" type="text/jsx"></script>
+</head>
 
-        DishSource.apiCall("/recipes/quickAnswer?"+new URLSearchParams({q:"How much vitamin C is in an orange?"}))
-                            .then(data=> console.log(data)).catch(error=> console.log("there was a problem", error))
-        
-        DishSource.searchDishes({query:"pizza"}).then(results => console.log(results));
+<body>
+    <div id="app"></div>
+</body>
 
-        Promise.all([DishSource.getDishDetails(AA), DishSource.getDishDetails(BB)])
-                    .then(values => ReactDOM.render(<TestedView someProp = {values}))
+<script type="text/jsx">
+    const myModel=new DinnerModel(3); 
+    Promise.all(
+        [DishSource.getDishDetails(523145), 
+        DishSource.getDishDetails(787321),
+        DishSource.getDishDetails(452179)]
+    ).then(function(values){ 
+        values.map(d=>myModel.addToMenu(d));
+        ReactDOM.render(<App model={myModel}/>, document.getElementById("app"));
+    });
 
-        DishSource.searchDishes({query:"pizza"}).then(results =>
-                    ReactDOM.render(<SearchResultsView searchResults = {results} />,
-                    document.getElementById("app")));
-        
-        DishSource.searchDishes({query:"pasta"}).then(results =>
-                    ReactDOM.render(<SearchResultsView searchResults = {results}
-                    dishChosen = {id => console.log("The user chose dish ", id)}/>,
-                    document.getElementById("app")));
-        
-        Promise.all([DishSource.getDishDetails(523145), DishSource.getDishDetails(787321 ),
-            	    DishSource.getDishDetails(452179)]).then(values =>
-                    ReactDOM.render(<SidebarView guests = {5}
-                    dishes = {values}
-                    removeDish = {id => console.log("user wants to remove dish with ID ", id)}/>,
-                    document.getElementById("app")));
-        
-        Promise.all([DishSource.getDishDetails(523145), DishSource.getDishDetails(787321 ),
-            	    DishSource.getDishDetails(452179)]).then(values =>
-                    ReactDOM.render(<SidebarView guests={5}
-                    dishes = {values}
-                    removeDish = {id => console.log("user wants to remove dish with ID ", id)}
-                    dishChoice = {id => console.log("user wants details of dish with ID ", id)} />,
-                    document.getElementById("app")));
-        
-        DishSource.getDishDetails(547775).then(details=>
-                    ReactDOM.render(<DetailsView dish={details} people={5} isDishInMenu={false}
-                    dishAdded = {() => console.log("User wants to add this dish! ")}/>,
-                    document.getElementById("app")));
+</script>
 
-        Promise.all([DishSource.getDishDetails(523145), DishSource.getDishDetails(787321),
-                    DishSource.getDishDetails(452179)]).then(values => ReactDOM.render(
-                    <SummaryView persons={5}
-                    ingredients = {getIngredients(values)} />,
-                    document.getElementById("app")));     
-         
-        const myModel=new DinnerModel(5);
-        Promise.all([DishSource.getDishDetails(548321), DishSource.getDishDetails(758118),
-                    DishSource.getDishDetails(1152690)]).then(values => values.map(d => myModel.addToMenu(d)))
-                    .then(()=> { myModel.removeFromMenu({id:758118 }); console.log(myModel); })
-        
-        Promise.all([DishSource.getDishDetails(523145), DishSource.getDishDetails(787321 ),
-            	    DishSource.getDishDetails(452179)]).then(values =>
-                    ReactDOM.render(<SidebarView guests={5}
-                    dishes = {values}
-                    removeDish = {id => console.log("user wants to remove dish with ID ", id)}
-                    dishChoice = {id => console.log("user wants details of dish with ID ", id)} />,
-                    document.getElementById("app")));
-        
-        ReactDOM.render((promiseNoData("a promise", "some data", null)) || <div>Hello world</div>, document.getElementById("app"));
-        ReactDOM.render(<div><SearchTest /><DetailsTest /></div>, document.getElementById("app"));  
-        */
-
-        
-        
-        ReactDOM.render((promiseNoData("a promise", undefined, null)) || <div>Hello world</div>, document.getElementById("app"));
-    </script>
 </html>

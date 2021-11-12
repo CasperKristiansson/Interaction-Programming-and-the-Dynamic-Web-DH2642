@@ -1,12 +1,12 @@
 function DetailsView(props) {
-    return (console.log(props.dish),
+    return (
         <div class="details-view">
             <div class="details-food-intro">
                 <img src={props.dish.image}/>
                 <div class="details-food-intro-text">
                     <h1> {props.dish.title} </h1>
-                    <p class="dish-price"> {`$${(props.dish.pricePerServing).toFixed(2)}`} </p>
-                    <p class="dish-type"> {dishTypeText(props.dish.dishTypes)} </p>
+                    <p class="dish-price">{`$${(props.dish.pricePerServing).toFixed(2)}`}</p>
+                    <p class="dish-type">{dishTypeText(props.dish.dishTypes)}</p>
                     <li>{`Estimate preparation time: ${props.dish.readyInMinutes} minutes`}</li>
                     <li>{`Health score: ${props.dish.healthScore}`}</li>
 

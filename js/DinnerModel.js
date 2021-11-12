@@ -1,35 +1,76 @@
-class DinnerModel{
-    constructor(guests=2, dishes=[], currentDish=null){
+class DinnerModel {
+    constructor(guests = 2, dishes = [], currentDish = null) {
+        this.observers = [];
         this.setNumberOfGuests(guests);
         this.dishes = dishes;
         this.currentDish = currentDish;
     }
 
     setNumberOfGuests(x) {
-        if (x <= 0 || x % 1 != 0) {
-            throw new Error("Number of guests must be greater than 0 and be a integer");
+        try {
+            if (x <= 0 || x % 1 != 0) {
+                throw new Error(
+                    "Number of guests must be greater than 0 and be a integer"
+                );
+            }
+            if (x != this.numberOfGuests) {
+                this.numberOfGuests = x;
+                this.notifyObservers();
+            }
+        } catch (e) {
+            console.error("Error at setNumberOfGuests", e);
         }
-        this.numberOfGuests = x;
     }
 
     addToMenu(dish) {
-        this.dishes = [...this.dishes, dish];
+        if (!this.dishes.includes(dish)) {
+            this.dishes = [...this.dishes, dish];
+            this.notifyObservers();
+        }
     }
 
     removeFromMenu(dishData) {
-        this.dishes = this.dishes.filter(dish => dish.id !== dishData);
+        if (this.dishes.includes(dishData)) {
+            this.dishes = this.dishes.filter((dish) => dish.id !== dishData);
+            this.notifyObservers();
+        }
     }
 
     setCurrentDish(id) {
-        this.currentDish = id;
+        if (this.currentDish != id) {
+            this.currentDish = id;
+            this.notifyObservers();
+        }
+    }
+
+    addObserver(callback) {
+        this.observers = [...this.observers, callback];
+    }
+
+    removeObserver(callback) {
+        this.observers = this.observers.filter(
+            (observer) => observer !== callback
+        );
+    }
+
+    notifyObservers() {
+        this.observers.forEach((observer) => {
+            try {
+                observer();
+            } catch (e) {
+                console.error(e);
+            }
+        });
     }
 }
 
 function getIngredients(values) {
     const result = {};
-    values.forEach(d => d.extendedIngredients.forEach(i => {
-        if(!result[i.id]) result[i.id] = {...i};
-        else result[i.id].amount += i.amount;
-    }))
+    values.forEach((d) =>
+        d.extendedIngredients.forEach((i) => {
+            if (!result[i.id]) result[i.id] = { ...i };
+            else result[i.id].amount += i.amount;
+        })
+    );
     return Object.values(result);
 }

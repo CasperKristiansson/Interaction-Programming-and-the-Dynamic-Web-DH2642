@@ -24,22 +24,20 @@
     </body>
 
     <script type="text/jsx">
-		const myModel = new DinnerModel(3);
-        const TopLevelModel= {
-            data() {
-                return { model : myModel };
-            },
+		const myModel = new DinnerModel();
+        myModel.addObserver(() => console.log(myModel));
+        const errorLogger = () => console.error(myModel);
+        myModel.addObserver(errorLogger);
 
-            render() {
-                return <App model = { this.model }/>;
-            }
-        };
+        myModel.setNumberOfGuests(5)
+        DishSource.getDishDetails(547775).then(d => myModel.addToMenu(d))
 
-        Promise.all([DishSource.getDishDetails(1445969),DishSource.getDishDetails(1529625),
-                    DishSource.getDishDetails(32104)]).then(function(values){
-                    values.map(d => myModel.addToMenu(d));
-                    Vue.render(<TopLevelModel />, document.getElementById("app"));
-                });
-
+        myModel.setNumberOfGuests(2)
+        myModel.setCurrentDish(547775)
+        DishSource.getDishDetails(787321).then(d => myModel.addToMenu(d))
+        
+        myModel.removeObserver(errorLogger)
+        myModel.removeFromMenu({id:787321})
+        myModel.setCurrentDish(null)
     </script>
 </html>
