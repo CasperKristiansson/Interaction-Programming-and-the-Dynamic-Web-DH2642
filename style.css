@@ -8,12 +8,31 @@ body {
 
 td, body{
     font-size: 15px;
+    overflow-x: hidden;
+}
+
+:root {
+    --blue1: #003f9a;
+    --blue2: #2871cc;
+    --blue3: #468fea;
+    --blue4: #5099f4;
+    --blue5: #78c1ff;
+}
+
+.hidden {
+    display: none;
+}
+
+.loadingSymbol {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
 }
 
 /* Navigation */
 .debug {
     border: 2px solid #ddd;
-
 }
 
 .flexParent {
@@ -21,17 +40,53 @@ td, body{
     flex-direction: row;
 }
 
-.sidebar {
-    width: 25%;
-}
-
 .mainContent {
     margin-left: -1px;
+    width: 100%;
 }
 
 /* sidebarView */
 .sidebarView {
     padding: 5px;
+    width: 400px;
+    height: 96vh;
+}
+
+.sidebarViewGuests {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.sidebarViewGuests button {
+    padding: 8px 32px;
+    border: none;
+    background-color: var(--blue5);
+    position: absolute;
+    font: inherit;
+    font-size: 20px;
+}
+
+.sidebarViewLeftButton {
+    border-radius: 20px 0 0 20px;
+    margin-right: 70px;
+}
+
+.sidebarViewRightButton {
+    border-radius: 0 20px 20px 0;
+    margin-right: -70px;
+}
+
+.sidebarViewGuests span {
+    font-size: 20px;
+    padding: 0 4px 0 7px;
+    z-index: 1;
+}
+
+.dishType {
+    width: 80px;
+    font-size: 13px;
 }
 
 .mealNote {
@@ -39,7 +94,17 @@ td, body{
 }
 
 .dishPrice {
-    color: #006a94;
+    color: var(--blue2);
+    font-size: 16px;
+    width: 90px;
+}
+
+.removeDish {
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 2px 2px 3px 0px #ddd;
+    margin: 10px 10px 0 10px;
 }
 
 .sidebarView button {
@@ -47,7 +112,11 @@ td, body{
 }
 
 .sidebarView a {
-    color: #006a94;
+    color: var(--blue4);
+}
+
+.totalText {
+    font-size: 18px;
 }
 
 /* summaryView */
@@ -56,22 +125,48 @@ td, body{
     font-size: 20px;
 }
 
+.centerDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.summaryView button {
+    margin-left: 20px;
+    padding: 6px;
+    border: 1px solid var(--blue4);
+    border-radius: 5px;
+    background-color: var(--blue5);
+    box-shadow: 2px 2px 4px 0px var(--blue5);
+    font: inherit;
+}
+
 .ingredientsTable {
-    margin-top: 20px;
-    border-collapse: collapse;
+    margin-top: 40px;
     border: 1px solid #ddd;
+    margin: 25px 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
 }
 
 .ingredientsTable th {
     font-size: 17px;
     text-align: left;
     padding: 10px 10px 10px 2px;
-    background-color: #006a94;
+    background-color: var(--blue4);
     color: white;
 }
 
+.tableLeft {
+    border-radius: 10px 0 0 0;
+}
+
+.tableRight {
+    border-radius: 0 10px 0 0;
+}
+
 .ingredientsTable tr:hover {
-    background-color: #46add6;
+    background-color: var(--blue5);
     color: white;
 }
 
@@ -80,6 +175,7 @@ td, body{
     padding: 50px 20% 50px 20%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .details-food-intro img {
@@ -102,10 +198,11 @@ td, body{
     padding: 10px;
     font-size: 15px;
     color: #006a94;
+    margin-right: 5px;
 }
 
 .details-food-intro-text button:disabled {
-    opacity: 0.5;
+    opacity: 0.3;
     pointer-events: none;
 }
 
@@ -124,7 +221,6 @@ td, body{
     color: #373b3d;
 }
 
-
 .dish-type {
     font-weight: bold;
     font-size: 18px;
@@ -136,7 +232,12 @@ td, body{
 }
 
 .details-food-information {
-    padding: 0 29% 0 29%;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    padding: 0 15% 0 30%;
+    max-width: 900px;
 }
 
 .tab-content {
@@ -172,26 +273,73 @@ td, body{
 }
 
 /* searchView */
+.searchFormViewTop {
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchFormViewTop input {
+    margin-right: 10px;
+    padding: 6px;
+    border: 1px solid var(--blue4);
+    border-radius: 5px;
+    background-color: var(--blue5);
+    box-shadow: 2px 2px 4px 0px var(--blue5);
+    font: inherit;
+}
+
+.searchFormViewTop select {
+    margin-right: 10px;
+    padding: 6px;
+    border: 1px solid var(--blue4);
+    border-radius: 5px;
+    background-color: var(--blue5);
+    box-shadow: 2px 2px 4px 0px var(--blue5);
+    font: inherit;
+}
+
+.searchFormViewTop button {
+    margin-right: 10px;
+    padding: 6px;
+    border: 1px solid var(--blue4);
+    border-radius: 5px;
+    background-color: var(--blue5);
+    box-shadow: 2px 2px 4px 0px var(--blue5);
+    font: inherit;
+}
 
 .searchResultView {
+    padding: 5% 7% 13% 5%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-gap: 2%;
 }
 
 .searchResultView img {
-    height:100%;
-    max-height: 100px;
-    
-    width:100%;
-    max-width: 100px;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
 }
 
 .searchResultView h3 {
-    font-size: 12px;
+    font-size: 20px;
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1600px) {
+    .tab-content {
+        width: 500px;
+    }
+
     .details-food-information {
-        padding: 0 10% 0 10%;
+        padding: 0 15% 0 25%;
     }
 
     .details-food-intro {
@@ -219,6 +367,21 @@ td, body{
     .details-food-intro-text button {
         margin-top: 30px;
     }
+
+    .tab-content {
+        padding: 20px 12px;
+    }
+
+    .details-food-information {
+        padding: 0 5% 0 5%;
+        margin-left: -15%;
+        width: 100%;
+    }
+
+    .gridContainer {
+        grid-template-columns: 50% 50%;
+        grid-gap: 2%;
+    }
 }
 
 @media only screen and (max-width: 570px) {
@@ -238,15 +401,31 @@ td, body{
     .total-price {
         margin-top: 30px;
     }
+
+    .searchFormViewTop {
+        padding: 15px;
+        display: block;
+        justify-content: center;
+    }
+
+    .details-food-information {
+        margin-left: -8%;
+    }
+
+    .tab-content {
+        width: 400px;
+    }
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1300px) {
     .details-food-intro {
         padding: 50px 5% 20px 5%;
     }
+
     .flexParent {
         flex-direction: column;
     }
+
     .debug {
         display: flex;
         justify-content: center;
@@ -255,5 +434,17 @@ td, body{
     
     .sidebar {
         width: 100%;
+    }
+
+    .sidebarView {
+        height: 100%;
+    }
+
+    .searchResultView {
+        padding-bottom: 200px;
+    }
+
+    .details-food-information {
+        padding: 0 5% 0 15%;
     }
 }

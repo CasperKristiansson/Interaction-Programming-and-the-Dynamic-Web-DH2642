@@ -31,7 +31,7 @@ function SearchPresenter(props) {
             {promiseNoData(promise, data, error) || (
                 <SearchResultsView
                     searchResults={data}
-                    dishChosen={(id) => props.model.setCurrentDish(id)}
+                    dishChosen={id => props.model.setCurrentDish(id)}
                 />
             )}
         </div>

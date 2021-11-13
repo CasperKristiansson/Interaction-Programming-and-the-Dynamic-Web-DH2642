@@ -11,7 +11,8 @@ function DetailsView(props) {
                     <li>{`Health score: ${props.dish.healthScore}`}</li>
 
                     <p class="total-price">{`Total Price $${(props.dish.pricePerServing * props.people).toFixed(2)}`}</p>
-                    <button onClick = {event => props.dishAdded(props.dish)} disabled = { props.isDishInMenu }>Add to menu</button> <button>Cancel</button>
+                    <button onClick = {() => { props.dishAdded(props.dish); window.location.hash="#search"}} disabled = {!props.isDishInMenu === undefined}>Add to menu</button>
+                    <button onClick = {() => window.location.hash="#search"}>Cancel</button>
                 </div>
             </div>
 
@@ -38,6 +39,7 @@ function DetailsView(props) {
     
                 </div>
                 <div id="ingredients" class="tab-content">
+                    <p>The recipe contains the following ingredients specified by the formula:</p>
                     {props.dish.extendedIngredients.map(function(result) {
                         return <li key={result.id}> {result.original} </li>
                     })}

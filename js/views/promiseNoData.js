@@ -2,7 +2,7 @@ function promiseNoData(promise, data, error) {
     if (promise === null) {
         return <span>no data</span>;
     } else if (promise && data == undefined && error === null) {
-        return <img src="http://www.csc.kth.se/~cristi/loading.gif"></img>;
+        return <img class="loadingSymbol" src="http://www.csc.kth.se/~cristi/loading.gif"></img>;
     } else if (promise && data == undefined && error) {
         return <span>{error}</span>;
     }

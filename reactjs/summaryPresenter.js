@@ -4,11 +4,11 @@ function SummaryPresenter(props) {
 
     React.useEffect(() => {
         const obs = () => {
-            setNumberOfGuests(model.numberOfGuests);
-            setDishes(model.dishes);
+            setGuests(props.model.numberOfGuests);
+            setDishes(props.model.dishes);
         };
-        model.addObserver(obs);
-        return () => model.removeObserver(obs);
+        props.model.addObserver(obs);
+        return () => props.model.removeObserver(obs);
     }, []);
 
     return (

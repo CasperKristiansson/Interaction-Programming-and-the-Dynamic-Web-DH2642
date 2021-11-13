@@ -23,24 +23,16 @@ class DinnerModel {
     }
 
     addToMenu(dish) {
-        if (!this.dishes.includes(dish)) {
-            this.dishes = [...this.dishes, dish];
-            this.notifyObservers();
-        }
+        if (this.dishes.some(d => d.id === dish)) return;
+        this.dishes = [...this.dishes, dish];
+        this.notifyObservers();
     }
 
-    removeFromMenu(dishData) {
-        if (this.dishes.includes(dishData)) {
-            this.dishes = this.dishes.filter((dish) => dish.id !== dishData);
-            this.notifyObservers();
-        }
-    }
+    removeFromMenu(id) {
+        if (this.dishes.every(current => current.id !== id)) return;
 
-    setCurrentDish(id) {
-        if (this.currentDish != id) {
-            this.currentDish = id;
-            this.notifyObservers();
-        }
+        this.dishes = this.dishes.filter((dish) => dish.id !== id);
+        this.notifyObservers();
     }
 
     addObserver(callback) {

@@ -1,25 +1,30 @@
 function SummaryView(props){
     return (
         <div class="summaryView">
-            Summary for <span title="nr. guests"> { props.persons }</span> guests:
-            <table class ="ingredientsTable">
-                <thead>
-                    <tr>
-                        <th>Ingredients</th>
-                        <th>Aisle</th>
-                        <th>Quantity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    { props.ingredients.sort(compareIngredients).map(function(ingredient){
-                        return <tr key={ ingredient.name }>
-                            <td>{ ingredient.name }</td>
-                            <td>{ ingredient.aisle }</td>
-                            <td>{`${(ingredient.amount * props.persons).toFixed(2)} ${ingredient.unit}`}</td>
+            <div class="centerDiv">
+                <span title="nr. guests">Summary for { props.persons } guests </span>
+                <button onClick={e => window.location.hash ="#search"}> Back to Search</button>
+            </div>
+            <div class="centerDiv">
+                <table class ="ingredientsTable">
+                    <thead>
+                        <tr>
+                            <th class="tableLeft">Ingredients</th>
+                            <th>Aisle</th>
+                            <th class="tableRight">Quantity</th>
                         </tr>
-                    }) }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        { props.ingredients.sort(compareIngredients).map(function(ingredient){
+                            return <tr key={ ingredient.name }>
+                                <td>{ ingredient.name }</td>
+                                <td>{ ingredient.aisle }</td>
+                                <td>{`${(ingredient.amount * props.persons).toFixed(2)} ${ingredient.unit}`}</td>
+                            </tr>
+                        }) }
+                    </tbody>
+                </table>
+            </div>
        </div>
     );
 }

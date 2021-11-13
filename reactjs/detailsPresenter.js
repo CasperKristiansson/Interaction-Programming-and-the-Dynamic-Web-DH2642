@@ -20,7 +20,6 @@ function DetailsPresenter(props) {
         props.model.addObserver(obs);
         return () => props.model.removeObserver(obs);
     }, []);
-
     return (
         promiseNoData(currentDish, currentDishDetails, currentDishError) || (
             <DetailsView
