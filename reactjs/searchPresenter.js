@@ -5,6 +5,22 @@ function SearchPresenter(props) {
     const [search, setSearch] = React.useState("");
     const [dishType, setDishType] = React.useState("");
 
+    debounced(() => updateSearch(), [search]);
+
+    function updateSearch () {
+        console.log("Searching...")
+        setData(null);
+        setError(null);
+        setPromise(
+            DishSource.searchDishes({
+                query: search,
+                type: dishType,
+            })
+                .then((data) => setData(data))
+                .catch((error) => setError(error))
+        );
+    };
+    
     React.useEffect(() => {
         setPromise(
             DishSource.searchDishes({})
@@ -21,9 +37,13 @@ function SearchPresenter(props) {
                 onSearch={() => {
                     setData(null);
                     setError(null);
-                    setPromise(DishSource.searchDishes({query: search, type: dishType,})
-                        .then((data) => setData(data))
-                        .catch((error) => setError(error))
+                    setPromise(
+                        DishSource.searchDishes({
+                            query: search,
+                            type: dishType,
+                        })
+                            .then((data) => setData(data))
+                            .catch((error) => setError(error))
                     );
                 }}
                 onDishType={(dishType) => setDishType(dishType)}
@@ -31,9 +51,17 @@ function SearchPresenter(props) {
             {promiseNoData(promise, data, error) || (
                 <SearchResultsView
                     searchResults={data}
-                    dishChosen={id => props.model.setCurrentDish(id)}
+                    dishChosen={(id) => props.model.setCurrentDish(id)}
                 />
             )}
         </div>
     );
+}
+
+const debounced = (func, useState) => {
+    React.useEffect(() => {
+        const handler = setTimeout(() => func(), 1000);
+
+        return () => clearTimeout(handler);
+    }, [...useState || [], 1000]);
 }
