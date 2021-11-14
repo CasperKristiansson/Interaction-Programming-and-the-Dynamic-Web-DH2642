@@ -8,7 +8,7 @@ class DinnerModel {
 
     setNumberOfGuests(x) {
         try {
-            if (x <= 0 || x % 1 != 0) {
+            if (x <= 0 || !Number.isInteger(x)) {
                 throw new Error(
                     "Number of guests must be greater than 0 and be a integer"
                 );

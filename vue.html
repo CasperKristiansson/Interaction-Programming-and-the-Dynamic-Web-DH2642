@@ -1,43 +1,47 @@
 <html>
-    <head>
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="stylesheet" href="style.css">
 
-        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-        <script>const React={createElement:Vue.h};</script>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="style.css">
 
-        <script src="js/apiConfig.js" type="text/jsx"></script>
-        <script src="js/dishSource.js" type="text/jsx"></script>
-        <script src="js/views/summaryView.js" type="text/jsx"></script>
-        <script src="js/views/sidebarView.js" type="text/jsx"></script>
-        <script src="js/views/searchView.js" type="text/jsx"></script>
-        <script src="js/views/detailsView.js" type="text/jsx"></script>
-        <script src="js/DinnerModel.js" type="text/jsx"></script>
-        <script src="js/App.js" type="text/jsx"></script>
-        <script src="vuejs/summaryPresenter.js" type="text/jsx"></script>
-        <script src="vuejs/sidebarPresenter.js" type="text/jsx"></script>
-    </head>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>const React = { createElement: Vue.h };</script>
 
-    <body>
-        <div id="app"></div>
-    </body>
+    <script src="js/apiConfig.js"></script>
+    <script src="js/dishSource.js"></script>
+    <script src="js/views/summaryView.js" type="text/jsx"></script>
+    <script src="js/views/sidebarView.js" type="text/jsx"></script>
+    <script src="js/views/searchView.js" type="text/jsx"></script>
+    <script src="js/views/detailsView.js" type="text/jsx"></script>
+    <script src="js/DinnerModel.js" type="text/jsx"></script>
+    <script src="js/views/promiseNoData.js" type="text/jsx"></script>
+    <script src="js/app.js" type="text/jsx"></script>
 
-    <script type="text/jsx">
-		const myModel = new DinnerModel();
-        myModel.addObserver(() => console.log(myModel));
-        const errorLogger = () => console.error(myModel);
-        myModel.addObserver(errorLogger);
+    <script src="vuejs/summaryPresenter.js" type="text/jsx"></script>
+    <script src="vuejs/sidebarPresenter.js" type="text/jsx"></script>
+    <script src="vuejs/searchPresenter.js" type="text/jsx"></script>
+    <script src="vuejs/detailsPresenter.js" type="text/jsx"></script>
+    <script src="vuejs/showPresenter.js" type="text/jsx"></script>
+</head>
 
-        myModel.setNumberOfGuests(5)
-        DishSource.getDishDetails(547775).then(d => myModel.addToMenu(d))
+<body>
+    <div id="app"></div>
+</body>
 
-        myModel.setNumberOfGuests(2)
-        myModel.setCurrentDish(547775)
-        DishSource.getDishDetails(787321).then(d => myModel.addToMenu(d))
-        
-        myModel.removeObserver(errorLogger)
-        myModel.removeFromMenu({id:787321})
-        myModel.setCurrentDish(null)
-    </script>
+<script type="text/jsx">
+    const myModel=new DinnerModel();
+
+    const TopLevelModel= {
+        data() {
+            return { model : new DinnerModel() };
+        },
+
+        render() {
+            return <App model = { this.model }/>;
+        }
+    };
+    Vue.render(<TopLevelModel />, document.getElementById("app"));
+</script>
+
 </html>

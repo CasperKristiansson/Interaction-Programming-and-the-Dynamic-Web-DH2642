@@ -15,7 +15,7 @@ function SearchFormView(props) {
 }
 
 function SearchResultsView(props) {
-    return (console.log(props),
+    return (
         <div class="searchResultView">
             <div class="gridContainer">
                 {props.searchResults.map(function(result) {

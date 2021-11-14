@@ -302,7 +302,7 @@ td, body{
 
 .searchFormViewTop button {
     margin-right: 10px;
-    padding: 6px;
+    padding: 7.2px;
     border: 1px solid var(--blue4);
     border-radius: 5px;
     background-color: var(--blue5);

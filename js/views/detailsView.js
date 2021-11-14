@@ -7,8 +7,8 @@ function DetailsView(props) {
                     <h1> {props.dish.title} </h1>
                     <p class="dish-price">{`$${(props.dish.pricePerServing).toFixed(2)}`}</p>
                     <p class="dish-type">{dishTypeText(props.dish.dishTypes)}</p>
-                    <li>{`Estimate preparation time: ${props.dish.readyInMinutes} minutes`}</li>
-                    <li>{`Health score: ${props.dish.healthScore}`}</li>
+                    <p>{`🕒Estimate preparation time: ${props.dish.readyInMinutes} minutes`}</p>
+                    <p>{`🥬Health score: ${props.dish.healthScore}`}</p>
 
                     <p class="total-price">{`Total Price $${(props.dish.pricePerServing * props.people).toFixed(2)}`}</p>
                     <button onClick = {() => { props.dishAdded(props.dish); window.location.hash="#search"}} disabled = {!props.isDishInMenu === undefined}>Add to menu</button>
