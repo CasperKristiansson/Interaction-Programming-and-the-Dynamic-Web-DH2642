@@ -23,7 +23,7 @@ function SearchResultsView(props) {
                         <span key = {result.id} onClick = {() =>
                             {props.dishChosen(result.id); window.location.hash="#details";}}>
                             <img src = {`https://spoonacular.com/recipeImages/${result.image}`}/>
-                            <p>{`🕒${result.readyInMinutes} Minutes 🍛${result.servings} ${(result.servings > 1) ? "servings" : "serving"}`}</p>
+                            <p>{`🕒${convertTimeHour(result.readyInMinutes)} Minutes 🍛${result.servings} ${(result.servings > 1) ? "servings" : "serving"}`}</p>
                             <h3>{result.title}</h3>
                         </span>
                     );
@@ -31,4 +31,8 @@ function SearchResultsView(props) {
             </div>
         </div>
     );
+}
+
+function convertTimeHour(time) {
+    return `${Math.floor(time / 60) ? Math.floor(time / 60) + " hours": ""}  ${time % 60}`;
 }

@@ -1,5 +1,5 @@
 function DetailsView(props) {
-    return (console.log("Dish Details: " + props.dish),
+    return (
         <div class="details-view">
             <div class="details-food-intro">
                 <img src={props.dish.image}/>
