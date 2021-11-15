@@ -19,7 +19,7 @@ function SummaryView(props){
                             return <tr key={ ingredient.name }>
                                 <td>{ ingredient.name }</td>
                                 <td>{ ingredient.aisle }</td>
-                                <td>{`${(ingredient.amount * props.persons).toFixed(2)} ${ingredient.unit}`}</td>
+                                <td>{`${parseFloat((ingredient.amount * props.persons).toFixed(2))} ${ingredient.unit}`}</td>
                             </tr>
                         }) }
                     </tbody>

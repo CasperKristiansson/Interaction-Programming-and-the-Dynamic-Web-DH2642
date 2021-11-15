@@ -23,6 +23,11 @@
     <script src="reactjs/showPresenter.js" type="text/jsx"></script>
 
     <script src="js/app.js" type="text/jsx"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-database.js"></script>
+    <script src="js/firebaseConfig.js"></script>
+    <script src="js/firebaseModel.js"></script>
 </head>
 
 <body>
@@ -33,7 +38,6 @@
     /*
     const myModel=new DinnerModel();
     ReactDOM.render(<App model={myModel} />,document.getElementById("app"));
-    */
 
     const myModel=new DinnerModel(3); 
     Promise.all(
@@ -42,6 +46,12 @@
         values.map(d=>myModel.addToMenu(d));
         ReactDOM.render(<App model={myModel}/>, document.getElementById("app"));
     });
+    */
+
+    const myModel= new DinnerModel();
+    persistModel(myModel);
+    firebase.database().ref("dinnerModel").once("value").then( ()=>
+    ReactDOM.render(<App model={myModel} />,document.getElementById("app")));
 
 </script>
 

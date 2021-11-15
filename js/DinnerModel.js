@@ -65,9 +65,9 @@ class DinnerModel {
 
         if (this.currentDish) {
             DishSource.getDishDetails(this.currentDish).then(
-                (dish) => {
+                (data) => {
                     if (this.currentDish === id) {
-                        this.currentDishDetails = dish;
+                        this.currentDishDetails = data;
                         this.notifyObservers();
                     }
                 },
@@ -79,6 +79,11 @@ class DinnerModel {
                 }
             );
         }
+    }
+
+    setDishes(dishes) {
+        this.dishes = [...dishes];
+        this.notifyObservers();
     }
 }
 
