@@ -14,11 +14,27 @@ Interaction programming gives the basic Model-View-Controller principles for dev
 
 https://www.kth.se/student/kurser/kurs/DH2642?l=en
 
+## Lab Tasks
+### Tutorial Week 1
+Intro to JavaScript, HTML, JSX, Rendering, Events, State
+
+### Turoriak Week 2
+Promises, CSS and finish Rendering
+
+### Tutorial Week 3
+Observer, subscriptions, navigation, persistence (Firebase)
+
 ## Search Menu
-![](Images/SearchMenu.png)
+<img src="Images/SearchMenu.png" width="700" />
 
 ## Details View
-![](Images/Details.png)
+<img src="Images/Details.png" width="700" />
 
 ## Summary View
-![](Images/Summary.png)
+<img src="Images/Summary.png" width="700" />
+
+### Bonus Points
+- TW1 on time
+- TW2 on time
+- TW3 on time
+- DinnerPlanner in The second framework
