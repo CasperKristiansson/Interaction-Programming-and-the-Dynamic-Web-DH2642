@@ -38,3 +38,4 @@ Observer, subscriptions, navigation, persistence (Firebase)
 - TW2 on time
 - TW3 on time
 - DinnerPlanner in The second framework
+- DinnerPlanner Search-as-you-type with debouncing
